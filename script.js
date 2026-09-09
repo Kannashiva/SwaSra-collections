@@ -4,7 +4,8 @@
 // ==========================================
 
 const whatsappNumber = "917075848073";
-
+const websiteUrl =
+    "https://swa-sra-collections.vercel.app/";
 
 // ==========================================
 // PAGE LOAD
@@ -21,6 +22,8 @@ document.addEventListener(
         renderProducts();
 
         initializeProductFilters();
+
+        openProductFromUrl();
 
     }
 );
@@ -422,24 +425,81 @@ function openProductModalByCode(
 
 }
 
+// ==========================================
+// OPEN PRODUCT FROM URL
+// ==========================================
 
+function openProductFromUrl() {
+
+    const urlParams =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const productCode =
+        urlParams.get("product");
+
+
+    if (!productCode) {
+        return;
+    }
+
+
+    const product =
+        products.find(
+            function (item) {
+
+                return (
+                    item.code === productCode
+                );
+
+            }
+        );
+
+
+    if (!product) {
+
+        console.warn(
+            "Product from URL not found:",
+            productCode
+        );
+
+        return;
+    }
+
+
+    openProductModalByCode(
+        productCode
+    );
+
+}
 // ==========================================
 // PRODUCT WHATSAPP LINK
 // ==========================================
 
-function createProductWhatsappLink(
-    product
-) {
+function createProductWhatsappLink(product) {
+
+    const productLink =
+        `${websiteUrl}?product=${encodeURIComponent(product.code)}`;
+
 
     const message =
-        `Hi SwaSra Collections, I'm interested in ${product.code} - ${product.name}. Price: ${product.price}. Please share available colours and ordering details.`;
+`Hi SwaSra Collections 👋
+
+I'm interested in this saree.
+
+Product: ${product.name}
+Code: ${product.code}
+Price: ${product.price}
+
+Product Link:
+${productLink}
+
+Please share available colours and ordering details.`;
 
 
-    return (
-        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-            message
-        )}`
-    );
+    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
 }
 
@@ -741,9 +801,24 @@ function openProductModal(
             : "";
 
 
-    const message =
-        `Hi SwaSra Collections, I'm interested in ${code} - ${title}. Selected Colour: ${firstColour}. Price: ${price}. Please share availability and ordering details.`;
+    const productLink =
+    `${websiteUrl}?product=${encodeURIComponent(code)}`;
 
+
+const message =
+`Hi SwaSra Collections 👋
+
+I'm interested in this saree.
+
+Product: ${title}
+Code: ${code}
+Colour: ${firstColour}
+Price: ${price}
+
+Product Link:
+${productLink}
+
+Please share availability and ordering details.`;
 
     whatsappButton.href =
         `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
@@ -880,9 +955,24 @@ function updateWhatsappColour(
         modalPrice.textContent;
 
 
-    const message =
-        `Hi SwaSra Collections, I'm interested in ${code} - ${title}. Selected Colour: ${colourName}. Price: ${price}. Please share availability and ordering details.`;
+    const productLink =
+    `${websiteUrl}?product=${encodeURIComponent(code)}`;
 
+
+const message =
+`Hi SwaSra Collections 👋
+
+I'm interested in this saree.
+
+Product: ${title}
+Code: ${code}
+Colour: ${colourName}
+Price: ${price}
+
+Product Link:
+${productLink}
+
+Please share availability and ordering details.`;
 
     whatsappButton.href =
         `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
