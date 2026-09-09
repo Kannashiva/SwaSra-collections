@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        SwaSra Collections | Elegance in Every Drape
+    </title>
+
+    <meta
+        name="description"
+        content="SwaSra Collections - Elegant sarees blending tradition, grace and modern style."
+    >
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+>
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+        <a
+            href="#home"
+            class="navbar-brand"
+        >
+
+            <img
+                src="images/logo.png"
+                alt="SwaSra Collections Logo"
+            >
+
+            <div class="navbar-brand-text">
+
+                <span>
+                    SwaSra
+                </span>
+
+                <small>
+                    COLLECTIONS
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <nav>
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#collections">
+                Collections
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <a
+            href="#collections"
+            class="nav-btn"
+        >
+            Shop Now
+        </a>
+
+    </header>
+
+
+
+    <main>
+
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+
+        <section
+            class="hero"
+            id="home"
+        >
+
+
+            <!-- HERO LOGO -->
+
+            <div class="hero-logo">
+
+                <img
+                    src="images/logo.png"
+                    alt="SwaSra Collections Logo"
+                >
+
+            </div>
+
+
+            <!-- HERO CONTENT -->
+
+            <div class="hero-content">
+
+                <p class="eyebrow">
+                    TRADITION • BEAUTY • ELEGANCE
+                </p>
+
+
+                <h1>
+                    Elegance in
+                    <span>
+                        Every Drape
+                    </span>
+                </h1>
+
+
+                <p class="hero-description">
+
+                    Discover beautiful sarees that celebrate Indian tradition
+                    with modern grace. Carefully selected for every occasion.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="#collections"
+                        class="gold-btn"
+                    >
+                        Explore Collection
+                    </a>
+
+
+                    <a
+                        href="#about"
+                        class="outline-btn"
+                    >
+                        Our Story
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FEATURE STRIP
+        ====================================================== -->
+
+        <section class="feature-strip">
+
+            <div>
+                <span>✦</span>
+                <p>Elegant Collections</p>
+            </div>
+
+
+            <div>
+                <span>✦</span>
+                <p>Handpicked Sarees</p>
+            </div>
+
+
+            <div>
+                <span>✦</span>
+                <p>Premium Quality</p>
+            </div>
+
+
+            <div>
+                <span>✦</span>
+                <p>Easy WhatsApp Orders</p>
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             COLLECTIONS
+        ====================================================== -->
+
+        <section
+            class="collections"
+            id="collections"
+        >
+
+
+            <div class="section-heading">
+
+                <p class="eyebrow gold-text">
+                    SHOP SWASRA
+                </p>
+
+
+                <h2>
+                    Our Latest Sarees
+                </h2>
+
+
+                <p>
+
+                    Explore our handpicked sarees designed for celebrations,
+                    special occasions and everyday elegance.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- =====================================================
+                 PRODUCT SEARCH & FILTERS
+            ====================================================== -->
+
+            <div class="product-tools">
+
+
+                <div class="product-search">
+
+                    <input
+                        type="text"
+                        id="productSearch"
+                        placeholder="Search by saree name or code..."
+                        aria-label="Search products"
+                    >
+
+                </div>
+
+
+                <div class="product-filters">
+
+
+                    <button
+                        class="filter-btn active"
+                        data-filter="all"
+                    >
+                        All
+                    </button>
+
+
+                    <button
+                        class="filter-btn"
+                        data-filter="silk"
+                    >
+                        Silk
+                    </button>
+
+
+                    <button
+                        class="filter-btn"
+                        data-filter="designer"
+                    >
+                        Designer
+                    </button>
+
+
+                    <button
+                        class="filter-btn"
+                        data-filter="traditional"
+                    >
+                        Traditional
+                    </button>
+
+
+                    <button
+                        class="filter-btn"
+                        data-filter="festive"
+                    >
+                        Festive
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================================
+                 PRODUCT GRID
+            ====================================================== -->
+<div class="product-grid" id="productGrid"></div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT
+====================================================== -->
+
+        <section
+            class="about"
+            id="about"
+        >
+
+
+            <div class="about-logo">
+
+                <img
+                    src="images/logo.png"
+                    alt="SwaSra Collections"
+                >
+
+            </div>
+
+
+
+            <div class="about-content">
+
+
+                <p class="eyebrow gold-text">
+                    OUR STORY
+                </p>
+
+
+                <h2>
+                    Tradition Meets
+                    Modern Grace
+                </h2>
+
+
+                <p>
+
+                    At SwaSra Collections, we believe every saree
+                    carries a story of elegance, culture and confidence.
+
+                </p>
+
+
+                <p>
+
+                    Our collections are thoughtfully selected to bring
+                    together timeless Indian tradition and modern fashion,
+                    helping every woman find a saree that feels uniquely hers.
+
+                </p>
+
+
+                <a
+                    href="#collections"
+                    class="gold-btn"
+                >
+                    View Our Collection
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             WHATSAPP CTA
+        ====================================================== -->
+
+        <!-- =====================================================
+     CONTACT
+====================================================== -->
+
+<section class="contact-section" id="contact">
+
+    <div class="section-heading">
+
+        <p class="eyebrow gold-text">
+            GET IN TOUCH
+        </p>
+
+        <h2>
+            Contact SwaSra Collections
+        </h2>
+
+        <p>
+            Have a question about a saree or want to place an order?
+            We're happy to help.
+        </p>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+        <!-- PHONE -->
+
+        <a
+            href="tel:+917075848073"
+            class="contact-card"
+        >
+            <div class="contact-icon">
+    <i class="fa-solid fa-phone"></i>
+</div>
+
+            <h3>Call Us</h3>
+
+            <p>
+                +91 70758 48073
+            </p>
+        </a>
+
+
+        <!-- WHATSAPP -->
+
+        <a
+            href="https://wa.me/917075848073"
+            class="contact-card"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <div class="contact-icon">
+    <i class="fa-brands fa-whatsapp"></i>
+</div>
+
+            <h3>WhatsApp</h3>
+
+            <p>
+                +91 70758 48073
+            </p>
+        </a>
+
+
+        <!-- EMAIL -->
+
+        <a
+            href="mailto:swasracollections@gmail.com"
+            class="contact-card"
+        >
+            <div class="contact-icon">
+    <i class="fa-solid fa-envelope"></i>
+</div>
+
+            <h3>Email Us</h3>
+
+            <p>
+                swasracollections@gmail.com
+            </p>
+        </a>
+
+
+        <!-- LOCATION -->
+
+        <a
+    href="https://www.google.com/maps/search/?api=1&query=17.448182%2C78.542479"
+    class="contact-card"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+
+    <div class="contact-icon">
+        <i class="fa-solid fa-location-dot"></i>
+    </div>
+
+    <h3>Visit Us</h3>
+
+    <p>
+        Durga Nagar, Street No. 6<br>
+        Malkajgiri, Hyderabad – 500047
+    </p>
+
+</a>
+
+</section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+
+        <div class="footer-brand">
+
+            <span>
+                SwaSra
+            </span>
+
+            <small>
+                COLLECTIONS
+            </small>
+
+        </div>
+
+
+        <p class="footer-tagline">
+            Elegance in Every Drape
+        </p>
+
+
+
+        <div class="footer-links">
+
+
+            <a href="#home">
+                Home
+            </a>
+
+
+            <a href="#collections">
+                Collections
+            </a>
+
+
+            <a href="#about">
+                About Us
+            </a>
+
+
+            <a
+                href="https://www.instagram.com/swasra_collections/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Instagram
+            </a>
+
+
+            <a
+                href="https://wa.me/917075848073?text=Hi%20SwaSra%20Collections%2C%20I%27d%20like%20to%20know%20more%20about%20your%20saree%20collection."
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                WhatsApp
+            </a>
+
+
+        </div>
+
+
+
+        <!-- FOOTER BOTTOM -->
+
+        <div class="footer-bottom">
+
+
+            <p class="copyright">
+
+                © 2026 SwaSra Collections.
+                All Rights Reserved.
+
+            </p>
+
+
+
+            <div class="developer-credit">
+
+
+                <span>
+                    Designed & Developed by
+                </span>
+
+
+                <a
+                    href="https://kannawebstudio.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="developer-brand"
+                >
+
+
+                    <img
+                        src="images/kannawebstudio.png"
+                        alt="Kanna Web Studio"
+                    >
+
+
+                    <span>
+                        Kanna Web Studio
+                    </span>
+
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         PRODUCT DETAILS POPUP
+    ====================================================== -->
+
+    <div
+        class="product-modal"
+        id="productModal"
+    >
+
+
+        <div
+            class="modal-overlay"
+            onclick="closeProductModal()"
+        ></div>
+
+
+
+        <div class="modal-content">
+
+
+            <!-- CLOSE BUTTON -->
+
+            <button
+                class="modal-close"
+                onclick="closeProductModal()"
+                aria-label="Close product details"
+            >
+                ×
+            </button>
+
+
+
+            <!-- PRODUCT IMAGE -->
+
+            <div
+                class="modal-image"
+                id="modalImage"
+            >
+
+
+                <img
+                    id="modalProductImage"
+                    src=""
+                    alt="SwaSra Collections Saree"
+                >
+
+
+            </div>
+
+
+
+            <!-- PRODUCT INFORMATION -->
+
+            <div class="modal-details">
+
+
+                <p
+                    class="modal-code"
+                    id="modalCode"
+                >
+                    SwaSra001
+                </p>
+
+
+
+                <h2 id="modalTitle">
+                    Royal Magenta Silk Saree
+                </h2>
+
+
+
+                <p
+                    class="modal-description"
+                    id="modalDescription"
+                >
+                    Elegant traditional saree with a rich festive finish.
+                </p>
+                <div class="modal-extra-details">
+
+    <div class="modal-detail-row">
+        <span class="detail-label">Fabric</span>
+        <span id="modalFabric" class="detail-value"></span>
+    </div>
+
+    <div class="modal-detail-row">
+        <span class="detail-label">Occasion</span>
+        <span id="modalOccasion" class="detail-value"></span>
+    </div>
+
+    <div class="modal-detail-row">
+        <span class="detail-label">Availability</span>
+        <span id="modalAvailability" class="detail-value"></span>
+    </div>
+
+</div>
+
+
+
+                <div class="modal-price-wrap">
+
+    <p id="modalOriginalPrice" class="modal-original-price"></p>
+
+    <p id="modalPrice" class="modal-price"></p>
+
+</div>
+
+
+
+                <div class="modal-divider"></div>
+
+<!-- PRODUCT COLOR VARIANTS -->
+
+<div class="modal-colours">
+
+    <p class="modal-colour-title">
+        Available Colours
+    </p>
+
+    <div class="colour-options"></div>
+
+</div>
+
+<div class="modal-divider"></div>
+                <div class="modal-features">
+
+
+                    <p>
+                        ✦ Handpicked by SwaSra Collections
+                    </p>
+
+
+                    <p>
+                        ✦ Elegant traditional design
+                    </p>
+
+
+                    <p>
+                        ✦ Perfect for special occasions
+                    </p>
+
+
+                    <p>
+                        ✦ Contact us on WhatsApp for more details
+                    </p>
+
+
+                </div>
+
+
+
+                <a
+                    href="#"
+                    class="modal-whatsapp"
+                    id="modalWhatsapp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Order on WhatsApp
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FLOATING INSTAGRAM BUTTON
+    ====================================================== -->
+
+    <a
+        href="https://www.instagram.com/swasra_collections/"
+        class="floating-instagram"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Follow SwaSra Collections on Instagram"
+    >
+
+
+        <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+        >
+
+            <path
+                fill="currentColor"
+                d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2zm0 2A3.76 3.76 0 0 0 4 7.75v8.5A3.76 3.76 0 0 0 7.75 20h8.5A3.76 3.76 0 0 0 20 16.25v-8.5A3.76 3.76 0 0 0 16.25 4h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.25-3.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"
+            />
+
+        </svg>
+
+
+    </a>
+
+
+
+    <!-- =====================================================
+         FLOATING WHATSAPP BUTTON
+    ====================================================== -->
+
+    <a
+        href="https://wa.me/917075848073?text=Hi%20SwaSra%20Collections%2C%20I%27d%20like%20to%20know%20more%20about%20your%20saree%20collection."
+        class="floating-whatsapp"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with SwaSra Collections on WhatsApp"
+    >
+
+
+        <svg
+            viewBox="0 0 32 32"
+            aria-hidden="true"
+        >
+
+
+            <path
+                fill="currentColor"
+                d="M16.02 3C8.84 3 3 8.73 3 15.8c0 2.25.6 4.45 1.74 6.38L3 29l7.03-1.83A13.15 13.15 0 0 0 16.02 28C23.2 28 29 22.28 29 15.2 29 8.73 23.2 3 16.02 3zm0 22.84c-1.92 0-3.8-.5-5.44-1.46l-.39-.23-4.17 1.09 1.11-4.03-.25-.4a9.7 9.7 0 0 1-1.5-5.01c0-5.35 4.48-9.7 10-9.7 5.51 0 10 4.35 10 9.7 0 5.34-4.49 9.7-9.36 10.04zm5.47-7.27c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.46-2.42-1.46-.9-.78-1.5-1.75-1.68-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.23 5.1 4.52.71.31 1.27.49 1.7.63.71.22 1.36.19 1.87.12.57-.08 1.77-.72 2.02-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"
+            />
+
+
+        </svg>
+
+
+    </a>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="data/products.js"></script>
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
