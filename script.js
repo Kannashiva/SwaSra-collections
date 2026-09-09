@@ -441,6 +441,10 @@ function openProductFromUrl() {
         urlParams.get("product");
 
 
+    const selectedColor =
+        urlParams.get("color");
+
+
     if (!productCode) {
         return;
     }
@@ -459,12 +463,6 @@ function openProductFromUrl() {
 
 
     if (!product) {
-
-        console.warn(
-            "Product from URL not found:",
-            productCode
-        );
-
         return;
     }
 
@@ -472,6 +470,64 @@ function openProductFromUrl() {
     openProductModalByCode(
         productCode
     );
+
+
+    if (
+        selectedColor &&
+        product.colours
+    ) {
+
+        const matchingColour =
+            product.colours.find(
+                function (colour) {
+
+                    return (
+                        colour.name === selectedColor
+                    );
+
+                }
+            );
+
+
+        if (matchingColour) {
+
+            setTimeout(
+                function () {
+
+                    const colourButtons =
+                        document.querySelectorAll(
+                            ".colour-option"
+                        );
+
+
+                    colourButtons.forEach(
+                        function (button) {
+
+                            const colourName =
+                                button
+                                    .querySelector("span")
+                                    ?.textContent
+                                    .trim();
+
+
+                            if (
+                                colourName === selectedColor
+                            ) {
+
+                                button.click();
+
+                            }
+
+                        }
+                    );
+
+                },
+                50
+            );
+
+        }
+
+    }
 
 }
 // ==========================================
@@ -955,8 +1011,8 @@ function updateWhatsappColour(
         modalPrice.textContent;
 
 
-    const productLink =
-    `${websiteUrl}?product=${encodeURIComponent(code)}`;
+   const productLink =
+    `${websiteUrl}?product=${encodeURIComponent(code)}&color=${encodeURIComponent(colourName)}`;
 
 
 const message =
