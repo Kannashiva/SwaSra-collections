@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+>
+
+<link
+    rel="stylesheet"
+    href="admin.css"
+>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        SwaSra Admin Dashboard
+    </title>
+
+</head>
+
+<body>
+
+<main class="admin-dashboard">
+
+    <header class="admin-header">
+
+        <div>
+            <p class="admin-label">
+                SwaSra Collections
+            </p>
+
+            <h1>
+                Product Manager
+            </h1>
+
+            <p id="adminStatus">
+                Checking login...
+            </p>
+        </div>
+
+        <button
+            id="logoutButton"
+            type="button"
+            class="admin-logout-btn"
+        >
+            Logout
+        </button>
+
+    </header>
+
+
+    <section class="admin-summary">
+
+        <div class="admin-summary-card">
+            <span>Total Designs</span>
+            <strong id="totalProducts">—</strong>
+        </div>
+
+        <div class="admin-summary-card">
+            <span>Total Colours</span>
+            <strong id="totalColours">—</strong>
+        </div>
+
+        <div class="admin-summary-card">
+            <span>Sold Out</span>
+            <strong id="soldOutColours">—</strong>
+        </div>
+
+    </section>
+
+
+    <section class="admin-products-section">
+
+        <div class="admin-section-heading">
+
+            <div>
+                <p class="admin-label">
+                    Inventory
+                </p>
+
+                <h2>
+                    Saree Collections
+                </h2>
+            </div>
+
+            <button
+                type="button"
+                class="admin-add-btn"
+                id="addProductButton"
+            >
+                + Add Saree
+            </button>
+
+        </div>
+
+
+        <div
+            id="adminProductList"
+            class="admin-product-list"
+        >
+
+            <p>
+                Loading products...
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+<div
+    id="editProductModal"
+    class="admin-modal"
+>
+
+    <div class="admin-modal-card">
+
+        <div class="admin-modal-header">
+
+            <div>
+                <p class="admin-label">
+                    Product Editor
+                </p>
+
+                <h2>
+                    Edit Saree
+                </h2>
+            </div>
+
+            <button
+                type="button"
+                class="admin-modal-close"
+                onclick="closeEditProductModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="editProductForm">
+
+            <input
+                type="hidden"
+                id="editProductId"
+            >
+
+
+            <label>
+                Product Code
+
+                <input
+                    type="text"
+                    id="editProductCode"
+                    disabled
+                >
+            </label>
+
+
+            <label>
+                Saree Name
+
+                <input
+                    type="text"
+                    id="editProductName"
+                    required
+                >
+            </label>
+
+
+            <label>
+                Selling Price
+
+                <input
+                    type="text"
+                    id="editProductPrice"
+                    required
+                >
+            </label>
+
+
+            <label>
+                Original Price
+
+                <input
+                    type="text"
+                    id="editOriginalPrice"
+                >
+            </label>
+
+
+            <label>
+                Fabric
+
+                <input
+                    type="text"
+                    id="editProductFabric"
+                >
+            </label>
+
+
+            <label>
+                Occasion
+
+                <input
+                    type="text"
+                    id="editProductOccasion"
+                >
+            </label>
+
+
+            <label>
+                Description
+
+                <textarea
+                    id="editProductDescription"
+                    rows="5"
+                ></textarea>
+            </label>
+
+
+            <label>
+                Overall Availability
+
+                <select
+                    id="editProductAvailability"
+                >
+                    <option value="In Stock">
+                        In Stock
+                    </option>
+
+                    <option value="Sold Out">
+                        Sold Out
+                    </option>
+                </select>
+            </label>
+
+
+            <button
+                type="submit"
+                class="admin-save-btn"
+            >
+                Save Changes
+            </button>
+
+
+            <p id="editProductMessage"></p>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div
+    id="addProductModal"
+    class="admin-modal"
+>
+
+    <div class="admin-modal-card">
+
+        <div class="admin-modal-header">
+
+            <div>
+                <p class="admin-label">
+                    New Product
+                </p>
+
+                <h2>
+                    Add Saree
+                </h2>
+            </div>
+
+            <button
+                type="button"
+                class="admin-modal-close"
+                onclick="closeAddProductModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="addProductForm">
+
+            <label>
+                Product Code
+
+                <input
+                    type="text"
+                    id="addProductCode"
+                    placeholder="Example: SwaSra006"
+                    required
+                >
+            </label>
+
+
+            <label>
+                Saree Name
+
+                <input
+                    type="text"
+                    id="addProductName"
+                    required
+                >
+            </label>
+
+
+            <label>
+                Selling Price
+
+                <input
+                    type="text"
+                    id="addProductPrice"
+                    placeholder="Example: ₹1,499"
+                    required
+                >
+            </label>
+
+
+            <label>
+                Original Price
+
+                <input
+                    type="text"
+                    id="addOriginalPrice"
+                    placeholder="Example: ₹1,699"
+                >
+            </label>
+
+
+            <label>
+                Category
+
+                <select
+                    id="addProductCategory"
+                    required
+                >
+                    <option value="">
+                        Select Category
+                    </option>
+
+                    <option value="designer">
+                        Designer
+                    </option>
+
+                    <option value="silk">
+                        Silk
+                    </option>
+
+                    <option value="traditional">
+                        Traditional
+                    </option>
+                </select>
+            </label>
+
+
+            <label>
+                Badge
+
+                <input
+                    type="text"
+                    id="addProductBadge"
+                    value="New"
+                >
+            </label>
+
+
+            <label>
+                Fabric
+
+                <input
+                    type="text"
+                    id="addProductFabric"
+                >
+            </label>
+
+
+            <label>
+                Occasion
+
+                <input
+                    type="text"
+                    id="addProductOccasion"
+                >
+            </label>
+
+
+            <label>
+                Description
+
+                <textarea
+                    id="addProductDescription"
+                    rows="5"
+                ></textarea>
+            </label>
+
+
+            <label>
+                Availability
+
+                <select
+                    id="addProductAvailability"
+                >
+                    <option value="In Stock">
+                        In Stock
+                    </option>
+
+                    <option value="Sold Out">
+                        Sold Out
+                    </option>
+                </select>
+            </label>
+
+
+            <button
+                type="submit"
+                class="admin-save-btn"
+            >
+                Add Saree
+            </button>
+
+
+            <p id="addProductMessage"></p>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     ADD COLOUR MODAL
+========================================== -->
+
+<div
+    id="addColourModal"
+    class="admin-modal"
+>
+    <div class="admin-modal-card">
+
+        <div class="admin-modal-header">
+
+            <div>
+                <p class="admin-label">
+                    Colour Variant
+                </p>
+
+                <h2>Add Colour</h2>
+            </div>
+
+            <button
+                type="button"
+                class="admin-modal-close"
+                onclick="closeAddColourModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <form id="addColourForm">
+
+            <input
+                type="hidden"
+                id="addColourProductId"
+            >
+
+            <p id="addColourProductCode"></p>
+
+            <label>
+                Colour Name
+
+                <input
+                    type="text"
+                    id="addColourName"
+                    placeholder="Example: Rani Pink"
+                    required
+                >
+            </label>
+
+            <label>
+                Product Image
+
+                <input
+                    type="file"
+                    id="addColourImage"
+                    accept="image/*"
+                    required
+                >
+            </label>
+
+            <label>
+                Availability
+
+                <select id="addColourAvailability">
+                    <option value="In Stock">
+                        In Stock
+                    </option>
+
+                    <option value="Sold Out">
+                        Sold Out
+                    </option>
+                </select>
+            </label>
+
+            <button
+                type="submit"
+                class="admin-save-btn"
+            >
+                Upload & Add Colour
+            </button>
+
+            <p id="addColourMessage"></p>
+
+        </form>
+
+    </div>
+</div>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+    <script
+        src="../supabase-config.js"
+    ></script>
+
+    <script
+        src="dashboard.js"
+    ></script>
+
+</body>
+
+</html>

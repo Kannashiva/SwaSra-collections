@@ -13,11 +13,13 @@ const websiteUrl =
 
 document.addEventListener(
     "DOMContentLoaded",
-    function () {
+    async function () {
 
         console.log(
             "SwaSra Collections website loaded successfully."
         );
+
+        await loadProductsFromSupabase();
 
         renderProducts();
 
@@ -28,7 +30,181 @@ document.addEventListener(
     }
 );
 
+// ==========================================
+// LOAD PRODUCTS FROM SUPABASE
+// ==========================================
 
+async function loadProductsFromSupabase() {
+
+    try {
+
+        const { data, error } =
+            await supabaseClient
+                .from("products")
+                .select(`
+                    id,
+                    code,
+                    name,
+                    price,
+                    original_price,
+                    category,
+                    badge,
+                    fabric,
+                    occasion,
+                    availability,
+                    description,
+                    created_at,
+                    product_colours (
+                        name,
+                        image_url,
+                        availability,
+                        created_at
+                    )
+                `)
+                .order(
+                    "code",
+                    {
+                        ascending: true
+                    }
+                );
+
+
+        if (error) {
+
+            console.error(
+                "Unable to load products from Supabase:",
+                error
+            );
+
+            console.log(
+                "Using products.js as backup."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            !data ||
+            data.length === 0
+        ) {
+
+            console.warn(
+                "No products found in Supabase. Using products.js as backup."
+            );
+
+            return;
+
+        }
+
+
+        products =
+            data.map(
+                function (product) {
+
+                    const colours =
+                        (
+                            product.product_colours ||
+                            []
+                        )
+                            .sort(
+                                function (a, b) {
+
+                                    return (
+                                        new Date(a.created_at) -
+                                        new Date(b.created_at)
+                                    );
+
+                                }
+                            )
+                            .map(
+                                function (colour) {
+
+                                    return {
+
+                                        name:
+                                            colour.name,
+
+                                        image:
+                                            colour.image_url,
+
+                                        availability:
+                                            colour.availability ||
+                                            "In Stock"
+
+                                    };
+
+                                }
+                            );
+
+
+                    return {
+
+                        code:
+                            product.code,
+
+                        name:
+                            product.name,
+
+                        price:
+                            product.price,
+
+                        originalPrice:
+                            product.original_price ||
+                            "",
+
+                        category:
+                            product.category,
+
+                        badge:
+                            product.badge ||
+                            "",
+
+                        fabric:
+                            product.fabric ||
+                            "",
+
+                        occasion:
+                            product.occasion ||
+                            "",
+
+                        availability:
+                            product.availability ||
+                            "In Stock",
+
+                        description:
+                            product.description ||
+                            "",
+
+                        colours:
+                            colours
+
+                    };
+
+                }
+            );
+
+
+        console.log(
+            "Products loaded from Supabase:",
+            products
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Unexpected Supabase error:",
+            error
+        );
+
+        console.log(
+            "Using products.js as backup."
+        );
+
+    }
+
+}
 // ==========================================
 // RENDER PRODUCTS
 // ==========================================
@@ -1252,6 +1428,33 @@ function initializeProductFilters() {
             );
 
         }
+    );
+
+}
+
+async function testSupabaseConnection() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("products")
+            .select("*")
+            .limit(1);
+
+
+    if (error) {
+
+        console.error(
+            "Supabase connection error:",
+            error
+        );
+
+        return;
+    }
+
+
+    console.log(
+        "Supabase connected successfully:",
+        data
     );
 
 }

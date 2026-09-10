@@ -1,4 +1,4 @@
-const products = [
+let  products = [
     {
         code: "SwaSra001",
 
