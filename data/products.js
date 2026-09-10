@@ -25,11 +25,13 @@ const products = [
         colours: [
             {
                 name: "Navy Blue",
-                image: "images/Cutwork Fancy 1100-002.jpeg"
+                image: "images/Cutwork Fancy 1100-002.jpeg",
+                availability: "Sold Out"
             },
             {
                 name: "Deep Purple",
-                image: "images/Cutwork Fancy 1100-001.jpeg"
+                image: "images/Cutwork Fancy 1100-001.jpeg",
+                availability: "Sold Out"
             },
             {
                 name: "Rani Pink",
@@ -74,7 +76,8 @@ const products = [
             },
             {
                 name: "Wine & Magenta",
-                image: "images/Mysore Silk 1299-001.jpeg"
+                image: "images/Mysore Silk 1299-001.jpeg",
+                availability: "Sold Out"
             },
             {
                 name: "Bottle Green & Magenta",
@@ -119,13 +122,11 @@ const products = [
             "Elegant Banaras Fancy saree featuring beautiful floral motifs and a richly detailed traditional border, available in five vibrant colours.",
 
         colours: [
-            {
-                name: "Peacock Blue",
-                image: "images/Banaras Fancy 1550-004.jpeg"
-            },
+           
             {
                 name: "Red",
-                image: "images/Banaras Fancy 1550-001.jpeg"
+                image: "images/Banaras Fancy 1550-001.jpeg",
+                availability: "Sold Out"
             },
             {
                 name: "Wine",
@@ -133,7 +134,12 @@ const products = [
             },
             {
                 name: "Rani Pink",
-                image: "images/Banaras Fancy 1550-003.jpeg"
+                image: "images/Banaras Fancy 1550-003.jpeg",
+                availability: "Sold Out"
+            },
+             {
+                name: "Peacock Blue",
+                image: "images/Banaras Fancy 1550-004.jpeg"
             },
             {
                 name: "Navy Blue",
@@ -169,7 +175,8 @@ const products = [
         colours: [
             {
                 name: "Navy Blue",
-                image: "images/Banaras Fancy 1650-001.jpeg"
+                image: "images/Banaras Fancy 1650-001.jpeg",
+                availability: "Sold Out"
             },
             {
                 name: "Rani Pink",
@@ -181,7 +188,8 @@ const products = [
             },
             {
                 name: "Red",
-                image: "images/Banaras Fancy 1650-004.jpeg"
+                image: "images/Banaras Fancy 1650-004.jpeg",
+                availability: "Sold Out"
             },
             {
                 name: "Wine",

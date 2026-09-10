@@ -777,16 +777,28 @@ function openProductModal(
 
 
                 button.className =
-                    "colour-option";
+    "colour-option";
 
 
-                if (index === 0) {
+if (colour.availability === "Sold Out") {
 
-                    button.classList.add(
-                        "active"
-                    );
+    button.classList.add(
+        "sold-out"
+    );
 
-                }
+}
+
+
+if (
+    index === 0 &&
+    colour.availability !== "Sold Out"
+) {
+
+    button.classList.add(
+        "active"
+    );
+
+}
 
 
                 button.innerHTML = `
@@ -804,17 +816,21 @@ function openProductModal(
 
 
                 button.addEventListener(
-                    "click",
-                    function () {
+    "click",
+    function () {
 
-                        changeProductColour(
-                            colour.image,
-                            colour.name,
-                            button
-                        );
+        if (colour.availability === "Sold Out") {
+            return;
+        }
 
-                    }
-                );
+        changeProductColour(
+            colour.image,
+            colour.name,
+            button
+        );
+
+    }
+);
 
 
                 colourOptions.appendChild(

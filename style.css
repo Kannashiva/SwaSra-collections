@@ -3070,3 +3070,34 @@ body.modal-open {
     }
 
 }
+
+/* =====================================================
+   SOLD OUT COLOUR VARIANTS
+===================================================== */
+
+.colour-option.sold-out {
+    position: relative;
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.colour-option.sold-out::after {
+    content: "SOLD OUT";
+
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(23, 19, 24, 0.72);
+    color: var(--white);
+
+    font-family: "Poppins", sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+
+    border-radius: 10px;
+}
