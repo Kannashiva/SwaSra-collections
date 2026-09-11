@@ -23,7 +23,11 @@
     <title>
         SwaSra Admin Dashboard
     </title>
-
+<link
+    rel="icon"
+    type="image/png"
+    href="/images/logo.png"
+>
 </head>
 
 <body>
@@ -32,7 +36,18 @@
 
     <header class="admin-header">
 
-        <div>
+    <div class="admin-header-brand">
+
+        <div class="admin-header-logo-wrapper">
+            <img
+                src="../images/logo.png"
+                alt="SwaSra Collections"
+                class="admin-header-logo"
+            >
+        </div>
+
+        <div class="admin-header-content">
+
             <p class="admin-label">
                 SwaSra Collections
             </p>
@@ -41,21 +56,21 @@
                 Product Manager
             </h1>
 
-            <p id="adminStatus">
-                Checking login...
-            </p>
+        
+
         </div>
 
-        <button
-            id="logoutButton"
-            type="button"
-            class="admin-logout-btn"
-        >
-            Logout
-        </button>
+    </div>
 
-    </header>
+    <button
+        id="logoutButton"
+        type="button"
+        class="admin-logout-btn"
+    >
+        Logout
+    </button>
 
+</header>
 
     <section class="admin-summary">
 
@@ -101,7 +116,15 @@
 
         </div>
 
-
+<div class="admin-search-wrapper">
+    <input
+        type="search"
+        id="adminProductSearch"
+        class="admin-search-input"
+        placeholder="Search by saree name, code or colour..."
+        autocomplete="off"
+    >
+</div>
         <div
             id="adminProductList"
             class="admin-product-list"

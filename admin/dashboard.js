@@ -1944,4 +1944,45 @@ async function deleteProduct(
 
 }
 
+/* ==========================================
+   ADMIN PRODUCT SEARCH
+========================================== */
+
+function initializeAdminProductSearch() {
+    const searchInput =
+        document.getElementById("adminProductSearch");
+
+    if (!searchInput) {
+        return;
+    }
+
+    searchInput.addEventListener(
+        "input",
+        function () {
+            const searchValue =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+            const productCards =
+                document.querySelectorAll(
+                    ".admin-product-card"
+                );
+
+            productCards.forEach(function (card) {
+                const productText =
+                    card.textContent.toLowerCase();
+
+                const matchesSearch =
+                    productText.includes(searchValue);
+
+                card.style.display =
+                    matchesSearch ? "" : "none";
+            });
+        }
+    );
+}
+
+initializeAdminProductSearch();
+
 startAdminDashboard();

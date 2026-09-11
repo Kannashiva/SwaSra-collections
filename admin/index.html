@@ -10,62 +10,171 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>
-        SwaSra Admin Login
-    </title>
+    <title>SwaSra Admin Login</title>
 
     <link
-        rel="stylesheet"
-        href="../style.css"
+    rel="icon"
+    type="image/png"
+    href="/images/logo.png"
+>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
     >
 
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="/admin/admin.css"
+>
 </head>
 
-<body>
+<body class="admin-login-body">
 
-    <main class="admin-login-page">
+    <main class="premium-login-page">
 
-        <div class="admin-login-card">
+        <section class="premium-login-card">
 
-            <h1>
-                SwaSra Collections
-            </h1>
+            <div class="login-brand">
 
-            <p>
-                Admin Login
-            </p>
+                <div class="login-logo-wrapper">
 
-            <form id="adminLoginForm">
+                    <img
+                        src="../images/logo.png"
+                        alt="SwaSra Collections"
+                        class="login-logo"
+                    >
 
-                <input
-                    type="email"
-                    id="adminEmail"
-                    placeholder="Email"
-                    required
-                >
+                </div>
 
-                <input
-                    type="password"
-                    id="adminPassword"
-                    placeholder="Password"
-                    required
-                >
+                <p class="login-eyebrow">
+                    SWASRA COLLECTIONS
+                </p>
+
+                <h1>
+                    Admin Portal
+                </h1>
+
+                <p class="login-subtitle">
+                    Elegance in Every Drape
+                </p>
+
+            </div>
+
+
+            <div class="login-divider">
+                <span></span>
+                <span class="login-divider-diamond">◆</span>
+                <span></span>
+            </div>
+
+
+            <form
+                id="adminLoginForm"
+                class="premium-login-form"
+            >
+
+                <!-- ROW 1 -->
+
+                <div class="login-field">
+
+                    <label for="adminEmail">
+                        Email / Username
+                    </label>
+
+                    <div class="login-input-wrapper">
+
+                        <span class="login-input-icon">
+                            ✉
+                        </span>
+
+                        <input
+                            type="email"
+                            id="adminEmail"
+                            placeholder="Enter your admin email"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- ROW 2 -->
+
+                <div class="login-field">
+
+                    <label for="adminPassword">
+                        Password
+                    </label>
+
+                    <div class="login-input-wrapper">
+
+                        <span class="login-input-icon">
+                            🔒
+                        </span>
+
+                        <input
+                            type="password"
+                            id="adminPassword"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
 
                 <button
                     type="submit"
+                    class="premium-login-button"
                 >
-                    Login
+                    LOGIN TO DASHBOARD
                 </button>
 
             </form>
 
+
             <p
                 id="loginMessage"
+                class="login-message"
             ></p>
 
-        </div>
+
+            <div class="login-security">
+
+                <span>◆</span>
+
+                <p>
+                    Secure Admin Access
+                </p>
+
+                <span>◆</span>
+
+            </div>
+
+        </section>
+
+        <p class="login-footer">
+            © 2026 SwaSra Collections
+        </p>
 
     </main>
+
 
     <script
         src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
@@ -73,9 +182,7 @@
 
     <script src="/supabase-config.js"></script>
 
-    <script
-        src="/admin/admin.js"
-    ></script>
+    <script src="/admin/admin.js"></script>
 
 </body>
 
