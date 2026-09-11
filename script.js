@@ -21,9 +21,11 @@ document.addEventListener(
 
         await loadProductsFromSupabase();
 
-        renderProducts();
+renderProducts();
 
-        initializeProductFilters();
+renderCategoryFilters();
+
+initializeProductFilters();
 
         openProductFromUrl();
 
@@ -1276,6 +1278,146 @@ document.addEventListener(
     }
 );
 
+// ==========================================
+// DYNAMIC CATEGORY FILTERS
+// ==========================================
+
+function renderCategoryFilters() {
+
+    const filterContainer =
+        document.getElementById(
+            "productFilters"
+        );
+
+
+    if (!filterContainer) {
+
+        console.error(
+            "Product filter container not found."
+        );
+
+        return;
+    }
+
+
+    // Get only categories that currently
+    // have products.
+
+    const categories =
+        [
+            ...new Set(
+                products
+                    .map(
+                        function (product) {
+
+                            return (
+                                product.category ||
+                                ""
+                            );
+
+                        }
+                    )
+                    .filter(Boolean)
+            )
+        ];
+
+
+    // Friendly names shown to customers.
+
+    const categoryNames = {
+
+        silk: "Silk",
+        fancy: "Fancy",
+        designer: "Designer",
+        traditional: "Traditional",
+        banarasi: "Banarasi",
+        "mysore-silk": "Mysore Silk",
+        cotton: "Cotton",
+        organza: "Organza",
+        georgette: "Georgette",
+        kanjeevaram: "Kanjeevaram",
+        pattu: "Pattu",
+        "party-wear": "Party Wear",
+        wedding: "Wedding",
+        "daily-wear": "Daily Wear"
+
+    };
+
+
+    filterContainer.innerHTML = "";
+
+
+    // ALL BUTTON
+
+    const allButton =
+        document.createElement(
+            "button"
+        );
+
+
+    allButton.type =
+        "button";
+
+    allButton.className =
+        "filter-btn active";
+
+    allButton.dataset.filter =
+        "all";
+
+    allButton.textContent =
+        "All";
+
+
+    filterContainer.appendChild(
+        allButton
+    );
+
+
+    // CATEGORY BUTTONS
+
+    categories.forEach(
+        function (category) {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+            button.className =
+                "filter-btn";
+
+            button.dataset.filter =
+                category;
+
+
+            button.textContent =
+                categoryNames[category] ||
+                category
+                    .replace(/-/g, " ")
+                    .replace(
+                        /\b\w/g,
+                        function (letter) {
+
+                            return (
+                                letter.toUpperCase()
+                            );
+
+                        }
+                    );
+
+
+            filterContainer.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
 
 // ==========================================
 // SEARCH & CATEGORY FILTER

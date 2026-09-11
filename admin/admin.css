@@ -87,34 +87,345 @@ body {
 
 
 /* ==========================================
-   SUMMARY
+   PREMIUM SUMMARY CARDS
 ========================================== */
 
 .admin-summary {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 24px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 26px;
 }
 
 .admin-summary-card {
-    background: var(--admin-card);
-    border: 1px solid var(--admin-border);
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 8px 24px rgba(23, 19, 24, 0.06);
+    position: relative;
+    min-height: 230px;
+    box-sizing: border-box;
+    padding: 28px 30px 26px;
+
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    grid-template-areas:
+        "icon label"
+        "breakdown breakdown";
+    align-items: center;
+    column-gap: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 250, 245, 0.99),
+            rgba(247, 239, 232, 0.96)
+        );
+
+    border: 1px solid rgba(215, 168, 75, 0.24);
+    border-radius: 20px;
+
+    box-shadow:
+        0 14px 32px rgba(23, 19, 24, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.86);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
 }
 
-.admin-summary-card span {
+.admin-summary-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--admin-gold),
+            #f2d58c,
+            var(--admin-gold)
+        );
+}
+
+.admin-summary-card::after {
+    content: "";
+    position: absolute;
+
+    width: 110px;
+    height: 110px;
+
+    right: -42px;
+    top: -42px;
+
+    border-radius: 50%;
+
+    background: rgba(215, 168, 75, 0.07);
+
+    pointer-events: none;
+}
+
+.admin-summary-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(215, 168, 75, 0.42);
+
+    box-shadow:
+        0 18px 38px rgba(23, 19, 24, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+
+/* ICON */
+
+.admin-summary-card .summary-icon {
+    grid-area: icon;
+
+    width: 64px;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    margin: 0;
+
+    border: 1px solid rgba(215, 168, 75, 0.22);
+    border-radius: 14px;
+
+    background: rgba(215, 168, 75, 0.11);
+    color: var(--admin-gold);
+
+    font-size: 18px;
+}
+
+.admin-summary-card .soldout-icon {
+    border-color: rgba(174, 24, 88, 0.15);
+    background: rgba(174, 24, 88, 0.09);
+    color: var(--admin-magenta);
+}
+
+
+/* LABEL */
+
+.admin-summary-card .summary-label {
+    grid-area: label;
+
     display: block;
+
+    margin: 0;
+    padding-right: 78px;
+
     color: var(--admin-muted);
-    font-size: 13px;
-    margin-bottom: 8px;
+
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
 }
 
-.admin-summary-card strong {
-    font-size: 28px;
+
+/* TOTAL NUMBER
+   Fixed inside the decorative top-right corner */
+
+.admin-summary-card .summary-number {
+    position: absolute;
+
+    top: 23px;
+    right: 26px;
+
+    z-index: 5;
+
+    margin: 0;
+    padding: 0;
+
     color: var(--admin-dark);
+
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1;
+
+    text-align: right;
+}
+
+
+/* CATEGORY BREAKDOWNS */
+
+.admin-summary-card .summary-category-breakdown,
+.admin-summary-card .soldout-category-breakdown {
+    grid-area: breakdown;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    margin-top: 24px;
+    padding-top: 18px;
+
+    border-top: 1px solid rgba(23, 19, 24, 0.08);
+}
+
+.summary-category-row,
+.soldout-category-row {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 14px;
+
+    padding: 7px 0;
+
+    box-sizing: border-box;
+
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.summary-category-row span,
+.soldout-category-row span {
+    min-width: 0;
+
+    color: rgba(23, 19, 24, 0.62);
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.summary-category-row strong,
+.soldout-category-row strong {
+    min-width: 26px;
+    flex-shrink: 0;
+
+    color: var(--admin-dark);
+
+    font-size: 13px;
+    font-weight: 700;
+    text-align: right;
+}
+
+.soldout-none {
+    margin: 0;
+    color: var(--admin-muted);
+    font-size: 12px;
+}
+
+
+/* ==========================================
+   PREMIUM SUMMARY RESPONSIVE
+========================================== */
+
+@media (max-width: 850px) {
+
+    .admin-summary {
+        gap: 12px;
+    }
+
+    .admin-summary-card {
+        min-height: 215px;
+        padding: 22px 20px 22px;
+
+        grid-template-columns: 52px 1fr;
+        column-gap: 14px;
+
+        border-radius: 17px;
+    }
+
+    .admin-summary-card .summary-icon {
+        width: 52px;
+        height: 52px;
+
+        border-radius: 13px;
+
+        font-size: 17px;
+    }
+
+    .admin-summary-card .summary-label {
+        padding-right: 66px;
+
+        font-size: 11px;
+        letter-spacing: 1.35px;
+    }
+
+    .admin-summary-card .summary-number {
+        top: 20px;
+        right: 22px;
+
+        font-size: 36px;
+    }
+
+    .admin-summary-card .summary-category-breakdown,
+    .admin-summary-card .soldout-category-breakdown {
+        margin-top: 20px;
+        padding-top: 15px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .admin-summary {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 18px;
+    }
+
+    .admin-summary-card,
+    .admin-soldout-card {
+        min-height: auto;
+
+        padding: 24px 26px 22px;
+
+        grid-template-columns: 58px 1fr;
+        grid-template-areas:
+            "icon label"
+            "breakdown breakdown";
+
+        column-gap: 16px;
+
+        border-radius: 16px;
+    }
+
+    .admin-summary-card .summary-icon {
+        width: 58px;
+        height: 58px;
+
+        font-size: 17px;
+    }
+
+    .admin-summary-card .summary-label {
+        margin: 0;
+        padding-right: 72px;
+
+        font-size: 11px;
+        line-height: 1.4;
+        letter-spacing: 1.5px;
+    }
+
+    .admin-summary-card .summary-number {
+        top: 22px;
+        right: 22px;
+
+        font-size: 36px;
+    }
+
+    .admin-summary-card .summary-category-breakdown,
+    .admin-summary-card .soldout-category-breakdown {
+        margin-top: 20px;
+        padding-top: 16px;
+    }
+
+    .summary-category-row,
+    .soldout-category-row {
+        padding: 6px 0;
+
+        font-size: 13px;
+    }
 }
 
 
@@ -275,10 +586,6 @@ body {
 
     .admin-logout-btn {
         width: 100%;
-    }
-
-    .admin-summary {
-        grid-template-columns: 1fr;
     }
 
     .admin-section-heading {
@@ -678,27 +985,6 @@ body {
         padding: 11px 16px;
     }
 
-    /* SUMMARY */
-
-    .admin-summary {
-        gap: 10px;
-        margin-bottom: 16px;
-    }
-
-    .admin-summary-card {
-        padding: 14px 16px;
-        border-radius: 13px;
-    }
-
-    .admin-summary-card span {
-        font-size: 12px;
-        margin-bottom: 4px;
-    }
-
-    .admin-summary-card strong {
-        font-size: 24px;
-    }
-
     /* PRODUCTS SECTION */
 
     .admin-products-section {
@@ -911,43 +1197,6 @@ body {
     }
 }
 
-/* ==========================================
-   MOBILE SUMMARY CARDS
-========================================== */
-
-@media (max-width: 600px) {
-
-    .admin-summary {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-    }
-
-    .admin-summary-card {
-        padding: 12px 8px;
-        text-align: center;
-    }
-
-    .admin-summary-card span {
-        font-size: 10px;
-        line-height: 1.3;
-        margin-bottom: 5px;
-    }
-
-    .admin-summary-card strong {
-        font-size: 21px;
-    }
-}
-
-@media (max-width: 360px) {
-
-    .admin-summary {
-        grid-template-columns: 1fr;
-    }
-
-    .admin-summary-card {
-        text-align: left;
-    }
-}
 
 /* ==========================================
    MOBILE HEADER FINAL POLISH
@@ -1699,3 +1948,4 @@ body {
         padding: 7px 13px;
     }
 }
+

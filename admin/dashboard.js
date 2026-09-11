@@ -161,6 +161,21 @@ async function loadAdminProducts() {
             "soldOutColours"
         );
 
+        const soldOutCategoryBreakdown =
+    document.getElementById(
+        "soldOutCategoryBreakdown"
+    );
+
+    const designCategoryBreakdown =
+    document.getElementById(
+        "designCategoryBreakdown"
+    );
+
+const colourCategoryBreakdown =
+    document.getElementById(
+        "colourCategoryBreakdown"
+    );
+
 
     if (!adminProductList) {
 
@@ -187,6 +202,7 @@ async function loadAdminProducts() {
                 code,
                 name,
                 price,
+                category,
                 availability,
                 product_colours (
                     id,
@@ -266,8 +282,12 @@ async function loadAdminProducts() {
     // SUMMARY COUNTS
     // ==========================================
 
-    let colourCount = 0;
-    let soldOutCount = 0;
+   let colourCount = 0;
+let soldOutCount = 0;
+
+const designsByCategory = {};
+const coloursByCategory = {};
+const soldOutByCategory = {};
 
 
     uniqueProducts.forEach(
@@ -277,22 +297,67 @@ async function loadAdminProducts() {
                 product.product_colours ||
                 [];
 
+                const category =
+    product.category ||
+    "uncategorized";
+
+
+if (!designsByCategory[category]) {
+    designsByCategory[category] = 0;
+}
+
+designsByCategory[category] += 1;
+
+
+if (!coloursByCategory[category]) {
+    coloursByCategory[category] = 0;
+}
+
+coloursByCategory[category] +=
+    colours.length;
+
 
             colourCount +=
                 colours.length;
 
 
-            soldOutCount +=
-                colours.filter(
-                    function (colour) {
+            const soldOutColoursForProduct =
+    colours.filter(
+        function (colour) {
 
-                        return (
-                            colour.availability ===
-                            "Sold Out"
-                        );
+            return (
+                colour.availability ===
+                "Sold Out"
+            );
 
-                    }
-                ).length;
+        }
+    );
+
+
+soldOutCount +=
+    soldOutColoursForProduct.length;
+
+
+if (
+    soldOutColoursForProduct.length > 0
+) {
+
+    const category =
+        product.category ||
+        "uncategorized";
+
+
+    if (!soldOutByCategory[category]) {
+
+        soldOutByCategory[category] = 0;
+
+    }
+
+
+    soldOutByCategory[category] +=
+        soldOutColoursForProduct.length;
+
+}
 
         }
     );
@@ -321,6 +386,191 @@ async function loadAdminProducts() {
 
     }
 
+    if (soldOutCategoryBreakdown) {
+
+    const categoryNames = {
+
+        silk: "Silk",
+        fancy: "Fancy",
+        designer: "Designer",
+        traditional: "Traditional",
+        banarasi: "Banarasi",
+        "mysore-silk": "Mysore Silk",
+        cotton: "Cotton",
+        organza: "Organza",
+        georgette: "Georgette",
+        kanjeevaram: "Kanjeevaram",
+        pattu: "Pattu",
+        "party-wear": "Party Wear",
+        wedding: "Wedding",
+        "daily-wear": "Daily Wear",
+        uncategorized: "Other"
+
+    };
+
+
+    const categoryRows =
+        Object.entries(
+            soldOutByCategory
+        )
+            .map(
+                function (
+                    [category, count]
+                ) {
+
+                    const name =
+                        categoryNames[
+                            category
+                        ] ||
+                        category
+                            .replace(
+                                /-/g,
+                                " "
+                            )
+                            .replace(
+                                /\b\w/g,
+                                function (
+                                    letter
+                                ) {
+
+                                    return (
+                                        letter
+                                            .toUpperCase()
+                                    );
+
+                                }
+                            );
+
+
+                    return `
+                        <div class="soldout-category-row">
+
+                            <span>
+                                ${name}
+                            </span>
+
+                            <strong>
+                                ${count}
+                            </strong>
+
+                        </div>
+                    `;
+
+                }
+            )
+            .join("");
+
+
+    soldOutCategoryBreakdown.innerHTML =
+        categoryRows ||
+        `
+            <p class="soldout-none">
+                No sold out colours
+            </p>
+        `;
+
+}
+
+// ==========================================
+// DESIGNS & COLOURS CATEGORY BREAKDOWN
+// ==========================================
+
+const summaryCategoryNames = {
+
+    silk: "Silk",
+    fancy: "Fancy",
+    designer: "Designer",
+    traditional: "Traditional",
+    banarasi: "Banarasi",
+    "mysore-silk": "Mysore Silk",
+    cotton: "Cotton",
+    organza: "Organza",
+    georgette: "Georgette",
+    kanjeevaram: "Kanjeevaram",
+    pattu: "Pattu",
+    "party-wear": "Party Wear",
+    wedding: "Wedding",
+    "daily-wear": "Daily Wear",
+    uncategorized: "Other"
+
+};
+
+
+function buildSummaryBreakdown(
+    categoryData
+) {
+
+    return Object.entries(
+        categoryData
+    )
+        .map(
+            function (
+                [category, count]
+            ) {
+
+                const name =
+                    summaryCategoryNames[
+                        category
+                    ] ||
+                    category
+                        .replace(
+                            /-/g,
+                            " "
+                        )
+                        .replace(
+                            /\b\w/g,
+                            function (
+                                letter
+                            ) {
+
+                                return (
+                                    letter
+                                        .toUpperCase()
+                                );
+
+                            }
+                        );
+
+
+                return `
+                    <div class="summary-category-row">
+
+                        <span>
+                            ${name}
+                        </span>
+
+                        <strong>
+                            ${count}
+                        </strong>
+
+                    </div>
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+if (designCategoryBreakdown) {
+
+    designCategoryBreakdown.innerHTML =
+        buildSummaryBreakdown(
+            designsByCategory
+        );
+
+}
+
+
+if (colourCategoryBreakdown) {
+
+    colourCategoryBreakdown.innerHTML =
+        buildSummaryBreakdown(
+            coloursByCategory
+        );
+
+}
 
     // ==========================================
     // CLEAR LOADING MESSAGE
@@ -710,6 +960,10 @@ async function openEditProductModal(
     ).value =
         data.original_price || "";
 
+        document.getElementById(
+    "editProductCategory"
+).value =
+    data.category || "";
 
     document.getElementById(
         "editProductFabric"
@@ -831,6 +1085,11 @@ if (editProductForm) {
                     "editProductPrice"
                 ).value.trim();
 
+                const category =
+    document.getElementById(
+        "editProductCategory"
+    ).value;
+
 
             const originalPrice =
                 document.getElementById(
@@ -890,6 +1149,9 @@ if (editProductForm) {
 
                         original_price:
                             originalPrice,
+                        
+                        category:
+                                  category,    
 
                         fabric:
                             fabric,

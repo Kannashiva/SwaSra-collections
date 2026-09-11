@@ -74,22 +74,81 @@
 
     <section class="admin-summary">
 
-        <div class="admin-summary-card">
-            <span>Total Designs</span>
-            <strong id="totalProducts">—</strong>
+    <div class="admin-summary-card">
+
+        <div class="summary-icon">
+            <i class="fa-solid fa-layer-group"></i>
         </div>
 
-        <div class="admin-summary-card">
-            <span>Total Colours</span>
-            <strong id="totalColours">—</strong>
+        <span class="summary-label">
+            Total Designs
+        </span>
+
+        <strong
+            id="totalProducts"
+            class="summary-number"
+        >
+            —
+        </strong>
+
+        <div
+    id="designCategoryBreakdown"
+    class="summary-category-breakdown"
+></div>
+
+    </div>
+
+
+    <div class="admin-summary-card">
+
+        <div class="summary-icon">
+            <i class="fa-solid fa-palette"></i>
         </div>
 
-        <div class="admin-summary-card">
-            <span>Sold Out</span>
-            <strong id="soldOutColours">—</strong>
+        <span class="summary-label">
+            Total Colours
+        </span>
+
+        <strong
+            id="totalColours"
+            class="summary-number"
+        >
+            —
+        </strong>
+
+       <div
+    id="colourCategoryBreakdown"
+    class="summary-category-breakdown"
+></div>
+
+    </div>
+
+
+    <div class="admin-summary-card admin-soldout-card">
+
+        <div class="summary-icon soldout-icon">
+            <i class="fa-solid fa-box-open"></i>
         </div>
 
-    </section>
+        <span class="summary-label">
+            Sold Out
+        </span>
+
+        <strong
+            id="soldOutColours"
+            class="summary-number"
+        >
+            —
+        </strong>
+
+        <div
+            id="soldOutCategoryBreakdown"
+            class="soldout-category-breakdown"
+        ></div>
+
+    </div>
+
+</section>
 
 
     <section class="admin-products-section">
@@ -218,6 +277,34 @@
                     id="editOriginalPrice"
                 >
             </label>
+
+            <label>
+    Category
+
+    <select
+        id="editProductCategory"
+        required
+    >
+        <option value="">
+            Select Category
+        </option>
+
+        <option value="silk">Silk Sarees</option>
+        <option value="fancy">Fancy Sarees</option>
+        <option value="designer">Designer Sarees</option>
+        <option value="traditional">Traditional Sarees</option>
+        <option value="banarasi">Banarasi Sarees</option>
+        <option value="mysore-silk">Mysore Silk Sarees</option>
+        <option value="cotton">Cotton Sarees</option>
+        <option value="organza">Organza Sarees</option>
+        <option value="georgette">Georgette Sarees</option>
+        <option value="kanjeevaram">Kanjeevaram Sarees</option>
+        <option value="pattu">Pattu Sarees</option>
+        <option value="party-wear">Party Wear Sarees</option>
+        <option value="wedding">Wedding Sarees</option>
+        <option value="daily-wear">Daily Wear Sarees</option>
+    </select>
+</label>
 
 
             <label>
@@ -362,31 +449,73 @@
 
 
             <label>
-                Category
+    Category
 
-                <select
-                    id="addProductCategory"
-                    required
-                >
-                    <option value="">
-                        Select Category
-                    </option>
+    <select
+        id="addProductCategory"
+        required
+    >
+        <option value="">
+            Select Category
+        </option>
 
-                    <option value="designer">
-                        Designer
-                    </option>
+        <option value="silk">
+            Silk Sarees
+        </option>
 
-                    <option value="silk">
-                        Silk
-                    </option>
+        <option value="fancy">
+            Fancy Sarees
+        </option>
 
-                    <option value="traditional">
-                        Traditional
-                    </option>
-                </select>
-            </label>
+        <option value="designer">
+            Designer Sarees
+        </option>
 
+        <option value="traditional">
+            Traditional Sarees
+        </option>
 
+        <option value="banarasi">
+            Banarasi Sarees
+        </option>
+
+        <option value="mysore-silk">
+            Mysore Silk Sarees
+        </option>
+
+        <option value="cotton">
+            Cotton Sarees
+        </option>
+
+        <option value="organza">
+            Organza Sarees
+        </option>
+
+        <option value="georgette">
+            Georgette Sarees
+        </option>
+
+        <option value="kanjeevaram">
+            Kanjeevaram Sarees
+        </option>
+
+        <option value="pattu">
+            Pattu Sarees
+        </option>
+
+        <option value="party-wear">
+            Party Wear Sarees
+        </option>
+
+        <option value="wedding">
+            Wedding Sarees
+        </option>
+
+        <option value="daily-wear">
+            Daily Wear Sarees
+        </option>
+    </select>
+</label>
             <label>
                 Badge
 
@@ -549,6 +678,7 @@
 
     </div>
 </div>
+
 
     <script
         src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
